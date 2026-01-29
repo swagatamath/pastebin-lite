@@ -1,5 +1,5 @@
 const express = require("express");
-const { nanoid } = require("nanoid");
+const crypto = require("crypto");
 const { createPaste } = require("../services/paste.service");
 
 const router = express.Router();
@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "max_views must be an integer >= 1" });
   }
 
-  const id = nanoid(10);
+  const id = crypto.randomBytes(8).toString("hex");
   const expiresAt = ttl_seconds ? new Date(Date.now() + ttl_seconds * 1000) : null;
   const maxViews = max_views ?? null;
 

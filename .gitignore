@@ -83,8 +83,6 @@ out
 .nuxt
 dist
 
-# Vercel
-.vercel/
 
 # Gatsby files
 .cache/
