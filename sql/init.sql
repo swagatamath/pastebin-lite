@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS pastes (
+    id NEXT PRIMARY_KEY,
+    content TEXT NOT NULL,
+    expires_at TIMESTAMPTZ NULL,
+    views INT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+)

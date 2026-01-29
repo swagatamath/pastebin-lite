@@ -1,0 +1,16 @@
+{
+  "name": "pastebin-lite",
+  "version": "1.0.0",
+  "description": "A lightweight Pastebin-like application built with Node.js and PostgreSQL.",
+  "main": "api/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.19.2",
+    "nanoid": "^5.0.7",
+    "pg": "^8.11.5"
+  }
+}
