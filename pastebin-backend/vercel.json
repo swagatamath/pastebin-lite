@@ -9,12 +9,12 @@
     }
   ],
   "routes": [
-    { "src": "/api/healthz", "dest": "pastebin-backend/api/index.js" },
-    { "src": "/api/pastes", "dest": "pastebin-backend/api/index.js" },
-    { "src": "/api/pastes/(.*)", "dest": "pastebin-backend/api/index.js" },
-    { "src": "/p/(.*)", "dest": "pastebin-backend/api/index.js" },
+  { "src": "/api/healthz", "dest": "pastebin-backend/api/index.js" },
+  { "src": "/api/pastes", "dest": "pastebin-backend/api/index.js" },
+  { "src": "/api/pastes/(.*)", "dest": "pastebin-backend/api/index.js" },
+  { "src": "/p/(.*)", "dest": "pastebin-backend/api/index.js" },
 
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "pastebin-ui/dist/$1" }
-  ]
+  { "handle": "filesystem" },
+  { "src": "/(.*)", "dest": "pastebin-ui/dist/index.html" }
+]
 }

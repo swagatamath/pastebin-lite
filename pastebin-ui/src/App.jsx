@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-const BASE_URL = "https://pastebin-lite-five-umber.vercel.app";
+const API_BASE = ""; 
 
 function numOrNull(v) {
   if (v === "" || v == null) return null;
@@ -25,9 +25,10 @@ export default function App() {
   const [fetchErr, setFetchErr] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ✅ HTML view is also same domain now
   const pasteUrl = useMemo(() => {
     if (!createRes?.id) return "";
-    return `${BASE_URL}/p/${createRes.id}`;
+    return `/p/${createRes.id}`;
   }, [createRes]);
 
   async function checkHealth() {
@@ -35,7 +36,7 @@ export default function App() {
     setFetchRes(null);
     setLoading(true);
     try {
-      const r = await fetch(`${BASE_URL}/api/healthz`);
+      const r = await fetch(`${API_BASE}/api/healthz`);
       const data = await r.json();
       if (!r.ok) throw new Error(data?.error || `HTTP ${r.status}`);
       setFetchRes({ healthz: data });
@@ -72,7 +73,7 @@ export default function App() {
 
     setLoading(true);
     try {
-      const r = await fetch(`${BASE_URL}/api/pastes`, {
+      const r = await fetch(`${API_BASE}/api/pastes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -107,7 +108,9 @@ export default function App() {
 
     setLoading(true);
     try {
-      const r = await fetch(`${BASE_URL}/api/pastes/${encodeURIComponent(pasteId.trim())}`);
+      const r = await fetch(
+        `${API_BASE}/api/pastes/${encodeURIComponent(pasteId.trim())}`
+      );
       const text = await r.text();
       let data;
       try {
@@ -129,7 +132,7 @@ export default function App() {
     <div style={{ fontFamily: "system-ui, Arial", maxWidth: 880, margin: "28px auto", padding: 16 }}>
       <h2 style={{ margin: 0 }}>Pastebin-Lite Tester</h2>
       <p style={{ marginTop: 8, color: "#555" }}>
-        Backend: <code>{BASE_URL}</code>
+        Backend: <code>same domain</code>
       </p>
 
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -207,7 +210,7 @@ export default function App() {
                 </a>
               </div>
               <div style={{ marginTop: 6 }}>
-                <a href={`${BASE_URL}/api/pastes/${createRes.id}`} target="_blank" rel="noreferrer">
+                <a href={`/api/pastes/${createRes.id}`} target="_blank" rel="noreferrer">
                   Open API JSON (counts views)
                 </a>
               </div>
@@ -246,7 +249,7 @@ export default function App() {
 
             {pasteId?.trim() && (
               <a
-                href={`${BASE_URL}/p/${pasteId.trim()}`}
+                href={`/p/${pasteId.trim()}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ alignSelf: "center" }}
