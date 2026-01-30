@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "pastebin-backend/api/index.js", "use": "@vercel/node" },
+    {
+      "src": "pastebin-ui/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    { "src": "/api/healthz", "dest": "pastebin-backend/api/index.js" },
+    { "src": "/api/pastes", "dest": "pastebin-backend/api/index.js" },
+    { "src": "/api/pastes/(.*)", "dest": "pastebin-backend/api/index.js" },
+    { "src": "/p/(.*)", "dest": "pastebin-backend/api/index.js" },
+
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "pastebin-ui/dist/$1" }
+  ]
+}
