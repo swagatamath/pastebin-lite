@@ -9,22 +9,8 @@ const { initTable } = require("../src/services/paste.service");
 
 const app = express();
 
-/* ---------------- CORS ---------------- */
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",          // local Vite
-      "http://localhost:3000",          // local backend
-      "https://pastebin-lite.vercel.app", // UI prod domain
-      "https://pastebin-lite-52yb.vercel.app"
-    ],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
+app.use(cors()); // allow same-origin + dev, no preflight issues
 
-// IMPORTANT for preflight on Vercel
-app.options("*", cors());
 /* ------------------------------------- */
 
 app.use(express.json({ limit: "256kb" }));
