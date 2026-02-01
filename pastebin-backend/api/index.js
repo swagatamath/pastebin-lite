@@ -9,6 +9,7 @@ const { initTable } = require("../src/services/paste.service");
 
 const app = express();
 
+
 app.use(cors()); // allow same-origin + dev, no preflight issues
 
 /* ------------------------------------- */
