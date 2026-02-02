@@ -1,7 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
-
 const healthz = require("../src/routes/healthz");
 const pastes = require("../src/routes/pastes");
 const pasteById = require("../src/routes/pasteById");
@@ -10,7 +8,6 @@ const { initTable } = require("../src/services/paste.service");
 const app = express();
 
 
-app.use(cors()); // allow same-origin + dev, no preflight issues
 
 /* ------------------------------------- */
 
